@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Help Desk SysAdmin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function showBlock(blockId) {
+            document.getElementById('welcomeBlock').style.display = 'none';
+            document.getElementById('viewBlock').style.display = 'none';
+            document.getElementById(blockId).style.display = 'block';
+        }
+
+        function showComment(comment) {
+            var commentBlock = document.getElementById('commentBlock');
+            if (commentBlock.style.display === 'none' || commentBlock.style.display === '') {
+                commentBlock.innerHTML = comment;
+                commentBlock.style.display = 'block';
+            } else {
+                commentBlock.style.display = 'none';
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css?rnd=<?= rand(0, 99999) ?>">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <link rel="icon" href="img/favicon-196x196.png" sizes="196x196">
+</head>
+<body>
+    <main>
+        <div class="gui">
+            <div class="headergui">
+                <div class="headerpadding">
+                    <div class="logoheader">
+                        <img class="headerimg" src="img/logo.svg">
+                    </div>
+                    <div class="logoutcont">
+                        <a class="logout" href="index.html">Выйти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="welcomeBlock" id="welcomeBlock">
+                <h2>Добро пожаловать, системный администратор!</h2>
+                <h3>Здесь вы можете посмотреть заявки пользователей и изменить их статус.</h3>
+                <button class="guibutton" onclick="showBlock('viewBlock')">Посмотреть заявки пользователей</button>
+            </div>
+
+            <div class="viewBlock" id="viewBlock" style="display:none;">
+                <div class="myrequests">
+                    <h3>Все заявки</h3>
+                    <div class="tablecont" id="tableblock">
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Имя пользователя</th>
+                                <th>Тема</th>
+                                <th style="width:239px">Подробности</th>
+                                <th style="width:370px">Статус</th>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style='text-align:center; word-wrap:normal; max-width:300px'>Иванов И.И.</td>
+                                <td>Нарушение работы системы: отсутствие подключения принтера</td>
+                                <td>
+                                    <button class='guitbbutton' onclick="showComment('принтер отключен от компьютера')">Посмотреть подробности</button>
+                                </td>
+                                <td>
+                                    <form method='POST'>
+                                        <input type='hidden' name='req_id' value='2'>
+                                        <select name='req_status'>
+                                            <option value="В работе" selected>В работе</option>
+                                            <option value="Завершена">Завершена</option>
+                                            <option value="Отправлена на доработку">Отправлена на доработку</option>
+                                        </select>
+                                        <button class='guitbbutton' type='submit'>Обновить статус</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td style='text-align:center; word-wrap:normal; max-width:300px'>Петров П.П.</td>
+                                <td>Проблема с сетевым подключением</td>
+                                <td>
+                                    <button class='guitbbutton' onclick="showComment('нет доступа к интернету, показывает ошибку подключения')">Посмотреть подробности</button>
+                                </td>
+                                <td>
+                                    <form method='POST'>
+                                        <input type='hidden' name='req_id' value='3'>
+                                        <select name='req_status'>
+                                            <option value="В работе" selected>В работе</option>
+                                            <option value="Завершена">Завершена</option>
+                                            <option value="Отправлена на доработку">Отправлена на доработку</option>
+                                        </select>
+                                        <button class='guitbbutton' type='submit'>Обновить статус</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td style='text-align:center; word-wrap:normal; max-width:300px'>Сидоров С.С.</td>
+                                <td>Установка нового программного обеспечения</td>
+                                <td>
+                                    <button class='guitbbutton' onclick="showComment('необходимо установить Adobe Photoshop последней версии')">Посмотреть подробности</button>
+                                </td>
+                                <td>
+                                    <form method='POST'>
+                                        <input type='hidden' name='req_id' value='4'>
+                                        <select name='req_status'>
+                                            <option value="В работе" selected>В работе</option>
+                                            <option value="Завершена">Завершена</option>
+                                            <option value="Отправлена на доработку">Отправлена на доработку</option>
+                                        </select>
+                                        <button class='guitbbutton' type='submit'>Обновить статус</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="commentBlock" id="commentBlock"></div>
+                </div>
+            </div>
+            <script>
+                showBlock('welcomeBlock');
+            </script>
+        </div>
+    </main>
+    <footer>
+        <p style='margin-top:6px'>Разработал: Федулов Степан Александрович</p>
+    </footer>
+</body>
+</html>

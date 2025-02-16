@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Help Desk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function showBlock(blockId) {
+            document.getElementById('welcomeBlock').style.display = 'none';
+            document.getElementById('requestBlock').style.display = 'none';
+            document.getElementById('viewBlock').style.display = 'none';
+            document.getElementById(blockId).style.display = 'block';
+        }
+        function showComment(comment) {
+    var commentBlock = document.getElementById('commentBlock');
+    if (commentBlock.style.display === 'none' || commentBlock.style.display === '') {
+        commentBlock.innerHTML = comment;
+        commentBlock.style.display = 'block';
+    } else {
+        commentBlock.style.display = 'none';
+    }
+}
+    </script>
+    <link rel="stylesheet" href="css/styles.css?rnd=<?= rand(0, 99999) ?>">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <link rel="icon" href="img/favicon-196x196.png" sizes="196x196">
+</head>
+<body>
+    <main>
+<div class="gui">
+    <div class="headergui">
+        <div class="headerpadding">
+            <div class="logoheader">
+                <img class="headerimg" src="img/logo.svg">
+            </div>
+            <div class="logoutcont">
+                <a class="logout" href="index.html">Выйти</a>
+            </div>
+        </div>
+    </div>
+            
+    <div class="welcomeBlock" id="welcomeBlock">
+        <h2>Добро пожаловать, Пользователь!</h2>
+        <h3>Здесь вы можете создать заявку в IT-отдел, а также посмотреть свои заявки. </h3>
+        <button class="guibutton" onclick="showBlock('requestBlock')" style="margin-right:5px">Создать заявку</button>
+        <button class="guibutton" onclick="showBlock('viewBlock')" style="margin-left:5px">Посмотреть мои заявки</button>
+    </div>
+    
+    <div id="requestBlock" style="display:none;">
+        <form class="requestmake"> 
+            <h3>Создать заявку</h3>
+            <label for="req_listid">Тема заявки:</label>
+            <select id="req_listid" name="req_listid" required>
+                <option value="1">Нарушение работы ПО</option>
+                <option value="2">Проблемы с железом</option>
+                <option value="3">Другое</option>
+            </select>
+            <br>
+            <label for="req_comm">Опишите подробности:</label>
+            <textarea id="req_comm" name="req_comm" required></textarea>
+            <br>
+            <input type="hidden" name="req_userid" value="1">
+            <button class="guibutton" type="submit" style="width: 225px">Отправить заявку</button> 
+            <br>
+            <button class="guibutton" onclick="showBlock('viewBlock')" style="width: 225px">Посмотреть мои заявки</button>
+        </form>
+    </div>
+    
+    <div class="viewBlock" id="viewBlock" style="display:none;">
+        <div class="myrequests">
+        <h3>Мои заявки</h3>
+        <div class="tablecont">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Тема</th>
+                <th>Подробности</th>
+                <th>Статус</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Нарушение работы ПО: отказ работы программы</td>
+                <td>
+                    <button class='guitbbutton' onclick="showComment('вылет Microsoft word во время работы')">Посмотреть подробности</button>
+                </td>
+                <td>
+                    <form method='POST'>
+                        <input type='hidden' name='req_id' value='1'>
+                        <select name='req_status'>
+                            <option value="Отправлена на доработку" selected>Отправлена на доработку</option>
+                            <option value="Закрыта">Закрыта</option>
+                        </select>
+                        <button class='guitbbutton' type='submit'>Обновить статус</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="commentBlock" id="commentBlock"></div>
+    </div>
+        <button class="guibutton" onclick="showBlock('requestBlock')">Создать новую заявку</button>
+        </div>
+    </div>
+    <script>
+        showBlock('welcomeBlock');
+    </script>
+  
+</div>
+</main>
+<footer>
+<p style='margin-top:6px'>Разработал: Федулов Степан Александрович</p>
+</footer>
+</body>
+</html>

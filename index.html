@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/styles.css?rnd=12345">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <link rel="icon" href="img/favicon-196x196.png" sizes="196x196">
+</head>
+<body>
+    <div class="authentication">
+        <div class="logo">
+            <img class="logopic" src="img/logo.svg" alt="">
+            <p class="header">
+                Служба технической поддержки <br>ООО "Лифан Северо-запад"
+            </p>
+        </div>
+        <div class="auth">
+            <form id="loginForm">
+                <div class="authheader">
+                    <p class="authtext">Вход</p>
+                </div>
+                <div class="inputlabel">
+                    <label for="login">Логин:</label>
+                </div>
+                <div class="authinput">
+                    <input class="authlogin" type="text" id="login" name="login" placeholder="Введите логин" required style="color:white;">
+                </div>
+                <div class="inputlabel">
+                    <label for="password">Пароль:</label>
+                </div>
+                <div class="authinput">
+                    <input class="authpassword" type="password" id="password" name="password" placeholder="Введите пароль" required style="color:white;">
+                </div>
+                <div class="authsubmit">
+                    <button class="authsubmitbutton" type="submit">Войти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const login = document.getElementById('login').value;
+
+            if (login === 'admin') {
+                window.location.href = 'admingui.html';
+            } else if (login === 'user') {
+                window.location.href = 'usergui.html';
+            } else if (login === 'programmer') {
+                window.location.href = 'programmergui.html';
+            } else if (login === 'sysadmin') {
+                window.location.href = 'sysadmingui.html';
+            } else {
+                alert('Неверный логин или пароль, попробуйте снова.');
+            }
+        });
+    </script>
+</body>
+</html>
